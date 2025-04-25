@@ -1,10 +1,9 @@
-import type { Metadata } from "next"
-import MainSection from "@/components/MainSection"
-import FeaturedWorkSection from "@/components/FeaturedWorkSection"
-import RunningProjectsSection from "@/components/RunningProjectsSection"
-import TestimonialsSection from "@/components/TestimonialsSection"
-import ContactSection from "@/components/ContactSection"
-import Navigation from "@/components/Navigation"
+import type { Metadata } from "next";
+import MainSection from "@/components/MainSection";
+import FeaturedWorkSection from "@/components/FeaturedWorkSection";
+import ContactSection from "@/components/ContactSection";
+import Navigation from "@/components/Navigation";
+import QueHago from "@/components/QueHago";
 
 export const metadata: Metadata = {
   title: "Dylan Rojo | Desarrollador Web & Especialista SEO",
@@ -61,17 +60,16 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
       <MainSection />
+      <QueHago />
       <FeaturedWorkSection />
-      <RunningProjectsSection />
-      <TestimonialsSection />
       <ContactSection />
     </div>
-  )
+  );
 }

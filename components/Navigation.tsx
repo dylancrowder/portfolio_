@@ -1,36 +1,32 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { useLanguage } from "@/contexts/language-context"
-import LanguageSelector from "./LanguageSelector"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/language-context";
+import LanguageSelector from "./LanguageSelector";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
-  const { t } = useLanguage()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
-  const [isScrolled, setIsScrolled] = useState(false)
+  const { t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Detectar scroll para cambiar el estilo de la navegación
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Determinar si estamos en la página de inicio
-  const isHomePage = pathname === "/"
+  const isHomePage = pathname === "/";
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 sm:py-8 transition-all duration-300 ${
-        isScrolled ? "bg-black/90 backdrop-blur-sm py-3 sm:py-4" : "bg-black/80 backdrop-blur-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className={`fixed top-0 left-0 right-0 z-50 b z-100 bg-black`}>
+      <div className="max-w-7xl mx-auto flex justify-between items-center h-full  sm:py-6  sm:py-8 border-b border-gray-700 ">
         <Link href="/" className="text-xl sm:text-2xl font-medium">
           Dylan.
         </Link>
@@ -76,7 +72,10 @@ export default function Navigation() {
                 >
                   {t("service.webdev")}
                 </Link>
-                <Link href="/servicios/seo" className="block px-4 py-2 text-sm hover:bg-gray-800 transition-colors">
+                <Link
+                  href="/servicios/seo"
+                  className="block px-4 py-2 text-sm hover:bg-gray-800 transition-colors"
+                >
                   {t("service.seo")}
                 </Link>
                 <Link
@@ -96,13 +95,19 @@ export default function Navigation() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <span
-            className={`w-full h-0.5 bg-white transition-transform ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+            className={`w-full h-0.5 bg-white transition-transform ${
+              isMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
           ></span>
           <span
-            className={`w-full h-0.5 bg-white transition-opacity ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
+            className={`w-full h-0.5 bg-white transition-opacity ${
+              isMenuOpen ? "opacity-0" : "opacity-100"
+            }`}
           ></span>
           <span
-            className={`w-full h-0.5 bg-white transition-transform ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            className={`w-full h-0.5 bg-white transition-transform ${
+              isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
           ></span>
         </button>
       </div>
@@ -113,24 +118,44 @@ export default function Navigation() {
           <div className="flex flex-col gap-4">
             {isHomePage ? (
               <>
-                <Link href="#work" className="py-2 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  href="#work"
+                  className="py-2 hover:text-gray-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {t("nav.work")}
                 </Link>
-                <Link href="#about" className="py-2 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  href="#about"
+                  className="py-2 hover:text-gray-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {t("nav.about")}
                 </Link>
               </>
             ) : (
               <>
-                <Link href="/#work" className="py-2 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  href="/#work"
+                  className="py-2 hover:text-gray-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {t("nav.work")}
                 </Link>
-                <Link href="/#about" className="py-2 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  href="/#about"
+                  className="py-2 hover:text-gray-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {t("nav.about")}
                 </Link>
               </>
             )}
-            <Link href="/contacto" className="py-2 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/contacto"
+              className="py-2 hover:text-gray-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
               {t("nav.contact")}
             </Link>
             <div className="py-2">
@@ -150,7 +175,11 @@ export default function Navigation() {
                 >
                   {t("service.webdev")}
                 </Link>
-                <Link href="/servicios/seo" className="py-1 hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  href="/servicios/seo"
+                  className="py-1 hover:text-gray-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {t("service.seo")}
                 </Link>
                 <Link
@@ -169,5 +198,5 @@ export default function Navigation() {
         </div>
       )}
     </nav>
-  )
+  );
 }
